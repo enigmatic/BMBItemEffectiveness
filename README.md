@@ -1,6 +1,3 @@
-[![Build Status]]
-[![Dependencies Status]]
-
 Black Market Brawlers Item Effectiveness is an attempt to learn MEAN.JS while working with real world data
 
 ## License
