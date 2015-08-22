@@ -3,7 +3,7 @@
 // Init the application configuration module for AngularJS application
 var ApplicationConfiguration = (function() {
 	// Init module configuration options
-	var applicationModuleName = 'bmbitemeffectiveness';
+	var applicationModuleName = 'black-market-brawlers-item-effectiveness';
 	var applicationModuleVendorDependencies = ['ngResource', 'ngAnimate',  'ui.router', 'ui.bootstrap', 'ui.utils'];
 
 	// Add a new vertical module

@@ -1,9 +1,9 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://localhost/bmbitemeffectiveness-dev',
+	db: 'mongodb://localhost/black-market-brawlers-item-effectiveness-dev',
 	app: {
-		title: 'BMBItemEffectiveness - Development Environment'
+		title: 'Black Market Brawlers Item Effectiveness - Development Environment'
 	},
 	facebook: {
 		clientID: process.env.FACEBOOK_ID || 'APP_ID',

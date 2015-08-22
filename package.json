@@ -1,6 +1,6 @@
 {
-	"name": "bmbitemeffectiveness",
-	"description": " Riot API checkouts using MEAN",
+	"name": "black-market-brawlers-item-effectiveness",
+	"description": "Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js to check out Black Market Brawler data",
 	"version": "0.0.1",
 	"author": "Matt Couch",
 	"engines": {

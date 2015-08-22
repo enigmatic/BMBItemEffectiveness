@@ -1,10 +1,10 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://localhost/bmbitemeffectiveness-test',
+	db: 'mongodb://localhost/black-market-brawlers-item-effectiveness-test',
 	port: 3001,
 	app: {
-		title: 'BMBItemEffectiveness - Test Environment'
+		title: 'Black Market Brawlers Item Effectiveness - Test Environment'
 	},
 	facebook: {
 		clientID: process.env.FACEBOOK_ID || 'APP_ID',

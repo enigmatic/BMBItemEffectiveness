@@ -2,7 +2,7 @@
 
 module.exports = {
 	app: {
-		title: 'BMBItemEffectiveness',
+		title: 'Black Market Brawlers Item Effectiveness',
 		description: 'Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js',
 		keywords: 'MongoDB, Express, AngularJS, Node.js'
 	},
