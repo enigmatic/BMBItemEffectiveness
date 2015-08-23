@@ -1,9 +1,20 @@
 <section data-ng-controller="HomeController">
-    <div style="border: solid red 1px" layout="row" layout-fill layout-margin layout-padding>
-        <div flex style="border: solid red 1px"> Champion Listing</div>
+    <div flex style="border: solid red 1px" layout="row" layout-fill layout-margin layout-padding>
+        <div flex='33' style="border: solid red 1px">
+            <h2>Champion Listing</h2>
+            <input type="search" ng-model="q" placeholder="Find Champion..." aria-label="filter champions" />
+            <ul class="example-animate-container">
+                <li class="animate-repeat" ng-repeat="champion in champions | filter:q as results">
+                    {{champion.name}}
+                </li>
+                <li class="animate-repeat" ng-if="results.length == 0">
+                    <strong>No results found...</strong>
+                </li>
+            </ul>
+        </div>
         <div flex style="border: solid red 1px" layout="column" layout-fill layout-margin layout-padding>
-            <div flex style="border: solid red 1px">Weapons</div>
-            <div flex style="border: solid red 1px">Charts</div>
+            <div flex style="border: solid red 1px"> Weapons </div>
+            <div flex style="border: solid red 1px"> Charts </div>
         </div>
     </div>
 </section>
