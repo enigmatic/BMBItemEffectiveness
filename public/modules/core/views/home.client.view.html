@@ -5,7 +5,7 @@
             <input type="search" ng-model="q" placeholder="Find Champion..." aria-label="filter champions" />
             <div class="example-animate-container">
                 <div class="animate-repeat" ng-repeat="champion in champions | filter:q as results">
-                    <img src="http://ddragon.leagueoflegends.com/cdn/5.2.1/img/champion/{{champion.key}}.png" height="64px" />{{champion.name}}:{{champion.title}}
+                    <img src="http://ddragon.leagueoflegends.com/cdn/5.14.1/img/champion/{{champion.key}}.png" height="64px" />{{champion.name}}:{{champion.title}}
                 </div>
                 <div class="animate-repeat" ng-if="results.length == 0">
                     <strong>No results found...</strong>
