@@ -1,38 +1,5 @@
 <section data-ng-controller="HomeController" layout="row" flex>
-    <md-sidenav flex class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="true" layout-fill layout-margin layout-padding>
-        <md-content layout-padding>
-            <md-list-item class="md-2-line champion" ng-if="selectedChampion">
-                <img src="http://ddragon.leagueoflegends.com/cdn/5.14.1/img/champion/{{selectedChampion.key}}.png" class="md-avatar" />
-                <div class="md-list-item-text">
-                    <h3>{{ selectedChampion.name }}</h3>
-                    <p>{{ selectedChampion.title }}</p>
-                </div>
-            </md-list-item>
-            <md-list-item class="md-2-line champion" ng-if="!selectedChampion">
-                <div class="md-list-item-text">
-                    <h3>All Champions</h3>
-                    <p></p>
-                </div>
-            </md-list-item>
-        </md-content>
-        <md-toolbar>
-            <h2 class="md-toolbar-tools">Champions</h2>
-        </md-toolbar>
-        <md-content layout-padding>
-            <input type="search" ng-model="champFilter" placeholder="Find Champion..." aria-label="filter champions" />
-            <md-list class="champions ">
-                <md-list-item class="md-2-line champion" ng-repeat="champion in champions | filter:champFilter as results" ng-click="selectChampion(champion)">
-                    <img src="http://ddragon.leagueoflegends.com/cdn/5.14.1/img/champion/{{champion.key}}.png" class="md-avatar" />
-                    <div class="md-list-item-text">
-                        <h3>{{ champion.name }}</h3>
-                        <p>{{ champion.title }}</p>
-                    </div>
-                </md-list-item>
-                <div class="animate-repeat" ng-if="results.length == 0">
-                    <strong>No results found...</strong>
-                </div>
-            </md-list>
-        </md-content>
+    <md-sidenav flex class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="true" layout-fill layout-margin layout-padding data-ng-include="'/modules/core/views/champions.client.view.html'">
     </md-sidenav>
     <md-content flex layout="column" layout-fill layout-margin layout-padding>
         <md-toolbar>
@@ -40,14 +7,17 @@
         </md-toolbar>
         <md-content layout-padding>
             <input type="search" ng-model="itemFilter" placeholder="Find Item..." aria-label="filter items" />
-            <div class="items">
-                <div class="item" ng-repeat="item in items | filter:itemFilter as results">
-                    <img src="http://ddragon.leagueoflegends.com/cdn/5.14.1/img/item/{{item.id}}.png" height="64px" />
-                </div>
-                <div class="animate-repeat" ng-if="results.length == 0">
+            <md-list class="items">
+                <md-list-item class="item" ng-repeat="item in items | filter:itemFilter as results">
+                    <img ng-src="http://ddragon.leagueoflegends.com/cdn/5.14.1/img/item/{{item.id}}.png" height="64px" />
+                    <md-tooltip>
+                        {{item.description}}
+                    </md-tooltip>
+                </md-list-item>
+                <md-list-item class="animate-repeat" ng-if="results.length == 0">
                     <strong>No results found...</strong>
-                </div>
-            </div>
+                </md-list-item>
+            </md-list>
         </md-content>
         <md-toolbar>
             <h2 class="md-toolbar-tools">Charts</h2>

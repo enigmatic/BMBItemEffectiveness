@@ -1,0 +1,35 @@
+<md-content layout-padding>
+    <md-list-item class="md-2-line champion" ng-if="selectedChampion">
+        <img ng-src="http://ddragon.leagueoflegends.com/cdn/5.14.1/img/champion/{{selectedChampion.key}}.png" class="md-avatar" />
+        <div class="md-list-item-text">
+            <h3>{{ selectedChampion.name }}</h3>
+            <p>{{ selectedChampion.title }}</p>
+        </div>
+        <md-button class="md-fab md-mini md-primary" aria-label="clear champion selection" ng-click="selectChampion(null)">
+            <md-icon class="material-icons">clear</md-icon>
+        </md-button>
+    </md-list-item>
+    <md-list-item class="md-2-line champion" ng-if="!selectedChampion">
+        <div class="md-list-item-text" style="height:75px">
+            <h3>Showing All Champions</h3>
+        </div>
+    </md-list-item>
+</md-content>
+<md-toolbar>
+    <h2 class="md-toolbar-tools">Champions</h2>
+</md-toolbar>
+<md-content layout-padding>
+    <input type="search" ng-model="champFilter" placeholder="Find Champion..." aria-label="filter champions" />
+    <md-list class="champions ">
+        <md-list-item class="md-2-line champion" ng-repeat="champion in champions | filter:champFilter as results" ng-click="selectChampion(champion)">
+            <img ng-src="http://ddragon.leagueoflegends.com/cdn/5.14.1/img/champion/{{champion.key}}.png" class="md-avatar" />
+            <div class="md-list-item-text">
+                <h3>{{ champion.name }}</h3>
+                <p>{{ champion.title }}</p>
+            </div>
+        </md-list-item>
+        <div class="animate-repeat" ng-if="results.length == 0">
+            <strong>No results found...</strong>
+        </div>
+    </md-list>
+</md-content>
