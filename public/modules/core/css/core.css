@@ -22,6 +22,12 @@
     float: left;
     margin: 5px;
 }
+.itemTooltip {
+    position: absolute;
+    z-index: 1;
+    background: white;
+    width: 200px;
+}
 @font-face {
     font-family: 'Material Icons';
     font-style: normal;
@@ -40,4 +46,7 @@
     word-wrap: normal;
     -webkit-font-feature-settings: 'liga';
     -webkit-font-smoothing: antialiased;
+}
+md-content.overflowTooltips {
+    overflow: visible;
 }
