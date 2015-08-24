@@ -6,9 +6,9 @@
             <h2 class="md-toolbar-tools">Items</h2>
         </md-toolbar>
         <md-content class="overflowTooltips" layout-padding>
-            <input type="search" ng-model="itemFilter" placeholder="Find Item..." aria-label="filter items" />
+            <input type="search" ng-model="itemFilter.name" placeholder="Find Item..." aria-label="filter items" />
             <md-list class="items">
-                <md-list-item class="item" ng-repeat="item in items | filter:itemFilter as results">
+                <md-list-item class="item" ng-repeat="item in items | filter:itemFilter:strict as results">
                     <img ng-src="http://ddragon.leagueoflegends.com/cdn/5.14.1/img/item/{{item.id}}.png" height="64px" ng-mouseenter="itemHover = false" ng-mouseleave="itemHover = true" ng-init="itemHover=true" />
                     <div class="itemTooltip md-whiteframe-z3" ng-hide="itemHover">
                         <h3>{{item.name}}</h3>
