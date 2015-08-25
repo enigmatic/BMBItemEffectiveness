@@ -1,0 +1,26 @@
+<md-content class="overflowTooltips" layout-padding>
+    <input type="search" ng-model="itemFilter.name" placeholder="Find Item..." aria-label="filter items" />
+    <md-list class="items">
+        <md-list-item class="item" ng-repeat="item in items | filter:itemFilter:strict as results" layout="row" ng-click="clickItem(item)">
+            <div class="itemImage">
+                <img ng-src="http://ddragon.leagueoflegends.com/cdn/5.14.1/img/item/{{item.id}}.png" height="64px" ng-mouseenter="itemHover = false" ng-mouseleave="itemHover = true" ng-init="itemHover=true" />
+                <div class="itemTooltip md-whiteframe-z3" ng-hide="itemHover">
+                    <h3>{{item.name}}</h3>
+                    <div ng-bind-html="TrustDangerousSnippet(item.description)">
+                    </div>
+                </div>
+            </div>
+            <div flex class="bar">
+                <div style="width: {{ 100 * item.wins / item.total }}%;" class="win">
+                    <div class="label">{{ item.wins }} Wins</div>
+                </div>
+                <div style="width: {{ 100 * ( item.total - item.wins ) / item.total }}%;" class="loss">
+                    <div class="label">{{ item.total - item.wins }} Losses </div>
+                </div>
+            </div>
+        </md-list-item>
+        <md-list-item class="animate-repeat" ng-if="results.length == 0">
+            <strong>No results found...</strong>
+        </md-list-item>
+    </md-list>
+</md-content>

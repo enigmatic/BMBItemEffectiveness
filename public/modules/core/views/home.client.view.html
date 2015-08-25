@@ -3,28 +3,10 @@
     </md-sidenav>
     <md-content flex layout="column" class="overflowTooltips" layout-fill layout-margin layout-padding>
         <md-toolbar>
-            <h2 class="md-toolbar-tools">Items</h2>
+            <h2 class="md-toolbar-tools">Ranking</h2>
         </md-toolbar>
-        <md-content class="overflowTooltips" layout-padding>
-            <input type="search" ng-model="itemFilter.name" placeholder="Find Item..." aria-label="filter items" />
-            <md-list class="items">
-                <md-list-item class="item" ng-repeat="item in items | filter:itemFilter:strict as results">
-                    <img ng-src="http://ddragon.leagueoflegends.com/cdn/5.14.1/img/item/{{item.id}}.png" height="64px" ng-mouseenter="itemHover = false" ng-mouseleave="itemHover = true" ng-init="itemHover=true" />
-                    <div class="itemTooltip md-whiteframe-z3" ng-hide="itemHover">
-                        <h3>{{item.name}}</h3>
-                        <div ng-bind-html="TrustDangerousSnippet(item.description)">
-                        </div>
-                    </div>
-                </md-list-item>
-                <md-list-item class="animate-repeat" ng-if="results.length == 0">
-                    <strong>No results found...</strong>
-                </md-list-item>
-            </md-list>
-        </md-content>
-        <md-toolbar>
-            <h2 class="md-toolbar-tools">Charts</h2>
-        </md-toolbar>
-        <md-content flex layout-padding>
-        </md-content>
+        <div data-ng-include="'/modules/core/views/items.client.view.html'" ng-if="!selectedItem">
+        </div>
+        <div class="selectedItem" data-ng-include="'/modules/core/views/selectedItem.client.view.html'" ng-if="selectedItem"></div>
     </md-content>
 </section>

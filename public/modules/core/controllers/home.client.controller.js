@@ -1,5 +1,20 @@
 'use strict';
 
+function sortItemFunction(a, b) {
+
+    var aT = a.wins / a.total,
+        bT = b.wins / b.total;
+
+
+    if (aT < bT) {
+        return 1;
+    } else if (aT > bT) {
+        return -1;
+    }
+
+    return 0;
+}
+
 
 angular.module('core').controller('HomeController', ['$scope', '$http', '$sce',
 	function ($scope, $http, $sce) {
@@ -12,7 +27,7 @@ angular.module('core').controller('HomeController', ['$scope', '$http', '$sce',
 
         $http.get('/api/items').success(function (response) {
             // If successful we assign the response to the global user model
-            $scope.items = response;
+            $scope.items = response.sort(sortItemFunction);
         }).error(function (response) {
             $scope.error = response.message;
         });
@@ -24,5 +39,9 @@ angular.module('core').controller('HomeController', ['$scope', '$http', '$sce',
         $scope.TrustDangerousSnippet = function (snippet) {
             return $sce.trustAsHtml(snippet);
         };
+
+        $scope.clickItem = function ($item) {
+            $scope.selectedItem = $item;
+        }
     }
 ]);

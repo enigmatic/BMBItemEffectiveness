@@ -1,0 +1,18 @@
+<md-list-item class="item" layout="row" ng-click="clickItem(null)">
+    <div class="itemImage" ng-if="selectedItem">
+        <img ng-src="http://ddragon.leagueoflegends.com/cdn/5.14.1/img/item/{{selectedItem.id}}.png" height="64px" ng-mouseenter="itemHover = false" ng-mouseleave="itemHover = true" ng-init="itemHover=true" />
+        <div class="itemTooltip md-whiteframe-z3" ng-hide="itemHover">
+            <h3>{{item.name}}</h3>
+            <div ng-bind-html="TrustDangerousSnippet(selectedItem.description)">
+            </div>
+        </div>
+    </div>
+    <div flex class="bar">
+        <div style="width: {{ 100 * selectedItem.wins / selectedItem.total }}%;" class="win">
+            <div class="label">{{ selectedItem.wins }} Wins</div>
+        </div>
+        <div style="width: {{ 100 * ( selectedItem.total - selectedItem.wins ) / selectedItem.total }}%;" class="loss">
+            <div class="label">{{ selectedItem.total - selectedItem.wins }} Losses </div>
+        </div>
+    </div>
+</md-list-item>
