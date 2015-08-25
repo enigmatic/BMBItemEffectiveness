@@ -1,4 +1,4 @@
-<md-list-item class="item" layout="row" ng-click="clickItem(null)">
+<md-list-item class="item" layout="row">
     <div class="itemImage" ng-if="selectedItem">
         <img ng-src="http://ddragon.leagueoflegends.com/cdn/5.14.1/img/item/{{selectedItem.id}}.png" height="64px" ng-mouseenter="itemHover = false" ng-mouseleave="itemHover = true" ng-init="itemHover=true" />
         <div class="itemTooltip md-whiteframe-z3" ng-hide="itemHover">
@@ -15,4 +15,7 @@
             <div class="label">{{ selectedItem.total - selectedItem.wins }} Losses </div>
         </div>
     </div>
+    <md-button class="md-fab md-mini md-primary" aria-label="clear item selection" ng-click="clickItem(null)">
+        <md-icon class="material-icons">clear</md-icon>
+    </md-button>
 </md-list-item>
