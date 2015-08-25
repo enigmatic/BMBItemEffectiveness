@@ -18,7 +18,7 @@
     .ng-valid.ng-dirty {
         border-color: #78FA89;
     }
-    .item .itemHeader {
+    .results .resultHeader {
         margin: 5px;
     }
     .bar .loss {
@@ -34,10 +34,10 @@
         position: absolute;
         line-height: 20px;
     }
-    .itemImage {
+    .resultImage {
         position: relative;
     }
-    .itemTooltip {
+    .resultTooltip {
         position: absolute;
         z-index: 10;
         background: white;
@@ -46,7 +46,7 @@
         left: 75px;
         top: 32px;
     }
-    md-list-item.item {
+    md-list-item.result {
         padding-bottom: 10px;
     }
     @font-face {
@@ -75,7 +75,7 @@
         margin-bottom: 10px;
         margin-left: 16px;
     }
-    .item button {
+    .results button {
         overflow: visible;
     }
     .selectedItem {

@@ -33,8 +33,8 @@ angular.module('core').controller('HomeController', ['$scope', '$http', '$sce',
         });
 
         $scope.selectChampion = function ($champion) {
-            $scope.selectedChampion = $champion
-        }
+            $scope.selectedChampion = $champion;
+        };
 
         $scope.TrustDangerousSnippet = function (snippet) {
             return $sce.trustAsHtml(snippet);
@@ -42,6 +42,14 @@ angular.module('core').controller('HomeController', ['$scope', '$http', '$sce',
 
         $scope.clickItem = function ($item) {
             $scope.selectedItem = $item;
-        }
+            if ($item) {
+                $http.get('/api/item/' + $item.id).success(function (response) {
+                    // If successful we assign the response to the global user model
+                    $scope.selectedItemStats = response.sort(sortItemFunction);
+                }).error(function (response) {
+                    $scope.error = response.message;
+                });
+            }
+        };
     }
 ]);

@@ -1,8 +1,11 @@
-<md-list-item class="item" layout="row">
-    <div class="itemImage" ng-if="selectedItem">
+<md-list-item class="result" layout="row">
+    <md-button class="md-fab md-mini md-primary" aria-label="clear item selection" ng-click="clickItem(null)">
+        <md-icon class="material-icons">clear</md-icon>
+    </md-button>
+    <div class="resultImage" ng-if="selectedItem">
         <img ng-src="http://ddragon.leagueoflegends.com/cdn/5.14.1/img/item/{{selectedItem.id}}.png" height="64px" ng-mouseenter="itemHover = false" ng-mouseleave="itemHover = true" ng-init="itemHover=true" />
-        <div class="itemTooltip md-whiteframe-z3" ng-hide="itemHover">
-            <h3>{{item.name}}</h3>
+        <div class="resultTooltip md-whiteframe-z3" ng-hide="itemHover">
+            <h3>{{selectedItem.name}}</h3>
             <div ng-bind-html="TrustDangerousSnippet(selectedItem.description)">
             </div>
         </div>
@@ -15,7 +18,27 @@
             <div class="label">{{ selectedItem.total - selectedItem.wins }} Losses </div>
         </div>
     </div>
-    <md-button class="md-fab md-mini md-primary" aria-label="clear item selection" ng-click="clickItem(null)">
-        <md-icon class="material-icons">clear</md-icon>
-    </md-button>
 </md-list-item>
+<md-content class="overflowTooltips" layout-padding>
+    <input type="search" ng-model="champFilter" placeholder="Find Champion..." aria-label="filter champions" />
+    <md-list class="results">
+        <md-list-item class="md-2-line result" ng-repeat="champion in selectedItemStats | filter:champFilter as results" ng-click="selectChampion(champion)">
+            <img ng-src="http://ddragon.leagueoflegends.com/cdn/5.14.1/img/champion/{{champion.key}}.png" height="64px" ng-mouseenter="champHover = false" ng-mouseleave="champHover = true" ng-init="champHover=true" />
+            <div class="resultTooltip md-whiteframe-z3" ng-hide="champHover">
+                <h3>{{ champion.name }}</h3>
+                <p>{{ champion.title }}</p>
+            </div>
+            <div flex class="bar">
+                <div style="width: {{ 100 * champion.wins / champion.total }}%;" class="win">
+                    <div class="label">{{ champion.wins }} Wins</div>
+                </div>
+                <div style="width: {{ 100 * ( champion.total - champion.wins ) / champion.total }}%;" class="loss">
+                    <div class="label">{{ champion.total - champion.wins }} Losses </div>
+                </div>
+            </div>
+        </md-list-item>
+        <div class="animate-repeat" ng-if="results.length == 0">
+            <strong>No results found...</strong>
+        </div>
+    </md-list>
+</md-content>
