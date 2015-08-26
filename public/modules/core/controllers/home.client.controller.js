@@ -72,7 +72,6 @@ angular.module('core').controller('HomeController', ['$scope', '$http', '$sce',
         var getChampItemDetail = function () {
             if ($scope.selectedChampion && $scope.selectedItem) {
                 $http.get('/api/champion/' + $scope.selectedChampion.id + '/item/' + $scope.selectedItem.id).success(function (response) {
-                    debugger;
                     // If successful we assign the response to the global item model
                     $scope.champItemDetail = response;
                 }).error(function (response) {
