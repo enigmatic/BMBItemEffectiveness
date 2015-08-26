@@ -18,36 +18,53 @@ function sortItemFunction(a, b) {
 
 angular.module('core').controller('HomeController', ['$scope', '$http', '$sce',
 	function ($scope, $http, $sce) {
-        debugger;
+
         $scope.items = [];
         $scope.items.sort(sortItemFunction);
 
         var getItems = function (champ) {
-            var scope = $scope;
-
             if (!champ) {
                 $http.get('/api/items').success(function (response) {
                     // If successful we assign the response to the global item model
-                    // $scope.items = response.sort(sortItemFunction);
-
-                    scope.items = response.sort(sortItemFunction);
-                    //$scope.items.addAll(response);
+                    $scope.items = response.sort(sortItemFunction);
+                    if ($scope.selectedItem) {
+                        var sel = response.filter(function (obj) {
+                            // coerce both obj.id and id to numbers 
+                            // for val & type comparison
+                            return +obj.id === +$scope.selectedItem.id;
+                        })[0];
+                        if (sel) {
+                            $scope.selectedItem = sel;
+                        } else {
+                            $scope.selectedItem.wins = 0;
+                            $scope.selectedItem.total = 0;
+                        }
+                    }
 
                 }).error(function (response) {
-                    scope.error = response.message;
+                    $scope.error = response.message;
                 });
             } else {
                 $http.get('/api/champion/' + champ.id).success(function (response) {
                     // If successful we assign the response to the global item model
 
-                    debugger;
-
-                    scope.items = response.sort(sortItemFunction);
-
-                    //$scope.items.addAll(response);
+                    $scope.items = response.sort(sortItemFunction);
+                    if ($scope.selectedItem) {
+                        var sel = response.filter(function (obj) {
+                            // coerce both obj.id and id to numbers 
+                            // for val & type comparison
+                            return +obj.id === +$scope.selectedItem.id;
+                        })[0];
+                        if (sel) {
+                            $scope.selectedItem = sel;
+                        } else {
+                            $scope.selectedItem.wins = 0;
+                            $scope.selectedItem.total = 0;
+                        }
+                    }
 
                 }).error(function (response) {
-                    scope.error = response.message;
+                    $scope.error = response.message;
                 });
             }
         };

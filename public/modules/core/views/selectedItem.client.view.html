@@ -11,12 +11,16 @@
         </div>
     </div>
     <div flex class="bar">
-        <div style="width: {{ 100 * selectedItem.wins / selectedItem.total }}%;" class="win">
+        <div style="width: {{ 100 * selectedItem.wins / selectedItem.total }}%;" class="win" ng-hide="selectedItem.total == 0">
             <div class="label">{{ selectedItem.wins }} Wins</div>
         </div>
-        <div style="width: {{ 100 * ( selectedItem.total - selectedItem.wins ) / selectedItem.total }}%;" class="loss">
+        <div style="width: {{ 100 * ( selectedItem.total - selectedItem.wins ) / selectedItem.total }}%;" class="loss" ng-hide="selectedItem.total == 0">
             <div class="label">{{ selectedItem.total - selectedItem.wins }} Losses </div>
         </div>
+        <div ng-hide="selectedItem.total != 0">
+            No Records
+        </div>
+
     </div>
 </md-list-item>
 <md-content class="overflowTooltips" layout-padding>
