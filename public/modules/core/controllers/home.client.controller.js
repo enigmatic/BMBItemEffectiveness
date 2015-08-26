@@ -69,6 +69,20 @@ angular.module('core').controller('HomeController', ['$scope', '$http', '$sce',
             }
         };
 
+        var getChampItemDetail = function () {
+            if ($scope.selectedChampion && $scope.selectedItem) {
+                $http.get('/api/champion/' + $scope.selectedChampion.id + '/item/' + $scope.selectedItem.id).success(function (response) {
+                    debugger;
+                    // If successful we assign the response to the global item model
+                    $scope.champItemDetail = response;
+                }).error(function (response) {
+                    $scope.error = response.message;
+                });
+            } else {
+                $scope.champItemDetail = null;
+            }
+        };
+
         $http.get('/api/champions').success(function (response) {
             // If successful we assign the response to the global champion model
             $scope.champions = response;
@@ -80,6 +94,7 @@ angular.module('core').controller('HomeController', ['$scope', '$http', '$sce',
         $scope.selectChampion = function ($champion) {
             $scope.selectedChampion = $champion;
             getItems($champion);
+            getChampItemDetail();
         };
 
         $scope.TrustDangerousSnippet = function (snippet) {
@@ -88,6 +103,7 @@ angular.module('core').controller('HomeController', ['$scope', '$http', '$sce',
 
         $scope.clickItem = function ($item) {
             $scope.selectedItem = $item;
+            getChampItemDetail();
             if ($item) {
                 $http.get('/api/item/' + $item.id).success(function (response) {
                     // If successful we assign the response to the global selectItem model
