@@ -23,7 +23,7 @@
 
     </div>
 </md-list-item>
-<md-content class="overflowTooltips" layout-padding>
+<md-content class="overflowTooltips" layout-padding ng-hide="selectedChampion">
     <input type="search" ng-model="champFilter" placeholder="Find Champion..." aria-label="filter champions" />
     <md-list class="results">
         <md-list-item class="md-2-line result" ng-repeat="champion in selectedItemStats | filter:champFilter as results" ng-click="selectChampion(champion)">

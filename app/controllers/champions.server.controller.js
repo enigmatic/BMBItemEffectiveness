@@ -32,3 +32,23 @@ exports.champion = function (req, res) {
 
     res.sendFile(filename, options);
 };
+
+
+
+exports.championItem = function (req, res) {
+    var champ = req.params.champ;
+    var item = req.params.item;
+
+    var options = {
+        root: __dirname + '/champions/items/' + champ + '/',
+        dotfiles: 'deny',
+        headers: {
+            'x-timestamp': Date.now(),
+            'x-sent': true
+        }
+    };
+
+    var filename = item + '.json';
+
+    res.sendFile(filename, options);
+};
