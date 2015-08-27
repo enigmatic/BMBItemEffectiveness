@@ -30,6 +30,11 @@
         height: 22px;
         margin-bottom: 5px;
     }
+    .bar .avg {
+        background: darkblue;
+        height: 22px;
+        margin-bottom: 5px;
+    }
     .bar .label {
         position: absolute;
         line-height: 20px;
@@ -80,4 +85,10 @@
     }
     .selectedItem {
         margin-top: 10px;
+    }
+    .resultLabel {
+        width: 50px;
+        font-weight: bold;
+        text-align: right;
+        margin-right: 5px;
     }

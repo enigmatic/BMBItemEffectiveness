@@ -69,22 +69,56 @@ angular.module('core').controller('HomeController', ['$scope', '$http', '$sce',
             }
         };
 
+        var statDetail = function (_text, _average, _item, _flipGood) {
+            var average = parseFloat(_average);
+            var item = parseFloat(_item);
+
+            return {
+                text: _text,
+                avg: average,
+                item: item,
+                avgPct: 100 * average / (average + item),
+                itemPct: 100 * item / (average + item),
+                good: _flipGood ? average > item : item > average
+            };
+        };
+
+        var calcStats = function () {
+            if ($scope.champItemDetail && $scope.champStats) {
+                var champStats = $scope.champStats,
+                    champItemDetail = $scope.champItemDetail;
+                $scope.champItemDetail.itemStats = [];
+
+                $scope.champItemDetail.itemStats.push(statDetail('Kills', champStats.kills, champItemDetail.kills));
+                $scope.champItemDetail.itemStats.push(statDetail('Deaths', champStats.deaths, champItemDetail.deaths, true));
+                $scope.champItemDetail.itemStats.push(statDetail('Assists', champStats.assists, champItemDetail.assists));
+
+                var avg = (parseFloat(champStats.kills) + parseFloat(champStats.assists)) / parseFloat(champStats.deaths);
+                var item = (parseFloat(champItemDetail.kills) + parseFloat(champItemDetail.assists)) / parseFloat(champItemDetail.deaths);
+
+                $scope.champItemDetail.itemStats.push(statDetail('KDA', avg, item));
+                $scope.champItemDetail.itemStats.push(statDetail('cs', champStats.cs, champItemDetail.cs));
+                $scope.champItemDetail.itemStats.push(statDetail('gold', champStats.gold, champItemDetail.gold));
+            }
+        };
+
         var getChampItemDetail = function () {
+            $scope.champItemDetail = null;
             if ($scope.selectedChampion && $scope.selectedItem) {
                 $http.get('/api/champion/' + $scope.selectedChampion.id + '/item/' + $scope.selectedItem.id).success(function (response) {
                     // If successful we assign the response to the global item model
                     $scope.champItemDetail = response;
+                    calcStats();
                 }).error(function (response) {
                     $scope.error = response.message;
                 });
-            } else {
-                $scope.champItemDetail = null;
             }
         };
 
         $http.get('/api/champions').success(function (response) {
             // If successful we assign the response to the global champion model
             $scope.champions = response;
+
         }).error(function (response) {
             $scope.error = response.message;
         });
@@ -93,6 +127,13 @@ angular.module('core').controller('HomeController', ['$scope', '$http', '$sce',
         $scope.selectChampion = function ($champion) {
             $scope.selectedChampion = $champion;
             getItems($champion);
+            $http.get('/api/champion/' + $scope.selectedChampion.id + '/stats').success(function (response) {
+                // If successful we assign the response to the global item model
+                $scope.champStats = response;
+                calcStats();
+            }).error(function (response) {
+                $scope.error = response.message;
+            });
             getChampItemDetail();
         };
 
@@ -114,5 +155,5 @@ angular.module('core').controller('HomeController', ['$scope', '$http', '$sce',
         };
 
         getItems(null);
-    }
-]);
+                }
+                ]);

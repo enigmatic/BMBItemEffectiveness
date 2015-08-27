@@ -46,3 +46,21 @@
         </div>
     </md-list>
 </md-content>
+<md-content layout-padding ng-hide="!champItemDetail">
+    <md-list class="results">
+        <md-list-item class="md-1-line result" ng-repeat="stat in champItemDetail.itemStats">
+            <div class="resultLabel">{{stat.text}}</div>
+            <div flex class="bar">
+                <div style="width : {{stat.avgPct}}%" class="avg">
+                    <div class=" label ">{{ stat.avg }} Average {{stat.text}} </div>
+                </div>
+                <div style="width : {{stat.itemPct}}%" ng-class="{win:stat.good, loss:!stat.good}">
+                    <div class="label ">{{ stat.item }} {{stat.text}}</div>
+                </div>
+            </div>
+        </md-list-item>
+        <div class="animate-repeat " ng-if="results.length==0 ">
+            <strong>No results found...</strong>
+        </div>
+    </md-list>
+</md-content>
