@@ -127,13 +127,15 @@ angular.module('core').controller('HomeController', ['$scope', '$http', '$sce',
         $scope.selectChampion = function ($champion) {
             $scope.selectedChampion = $champion;
             getItems($champion);
-            $http.get('/api/champion/' + $scope.selectedChampion.id + '/stats').success(function (response) {
-                // If successful we assign the response to the global item model
-                $scope.champStats = response;
-                calcStats();
-            }).error(function (response) {
-                $scope.error = response.message;
-            });
+            if ($champion) {
+                $http.get('/api/champion/' + $scope.selectedChampion.id + '/stats').success(function (response) {
+                    // If successful we assign the response to the global item model
+                    $scope.champStats = response;
+                    calcStats();
+                }).error(function (response) {
+                    $scope.error = response.message;
+                });
+            }
             getChampItemDetail();
         };
 
