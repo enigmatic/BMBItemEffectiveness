@@ -38,7 +38,6 @@ module.exports = function () {
     app.locals.title = config.app.title;
     app.locals.description = config.app.description;
     app.locals.keywords = config.app.keywords;
-    app.locals.facebookAppId = config.facebook.clientID;
     app.locals.jsFiles = config.getJavaScriptAssets();
     app.locals.cssFiles = config.getCSSAssets();
 
