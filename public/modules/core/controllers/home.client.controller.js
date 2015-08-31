@@ -126,8 +126,8 @@ angular.module('core').controller('HomeController', ['$scope', '$http', '$sce',
 
         $scope.selectChampion = function ($champion) {
             $scope.selectedChampion = $champion;
-            getItems($champion);
-            if ($champion) {
+            getItems($scope.selectedChampion);
+            if ($scope.selectedChampion) {
                 $http.get('/api/champion/' + $scope.selectedChampion.id + '/stats').success(function (response) {
                     // If successful we assign the response to the global item model
                     $scope.champStats = response;
