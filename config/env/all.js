@@ -3,8 +3,8 @@
 module.exports = {
     app: {
         title: 'Black Market Brawlers Item Effectiveness',
-        description: 'Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js',
-        keywords: 'MongoDB, Express, AngularJS, Node.js'
+        description: 'Full-Stack JavaScript with Express, AngularJS, and Node.js',
+        keywords: 'Express, AngularJS, Node.js'
     },
     port: process.env.PORT || 3000,
     templateEngine: 'swig',
