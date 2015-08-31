@@ -4,8 +4,8 @@
     "version": "1.0.0",
     "author": "Matt Couch",
     "engines": {
-        "node": "0.10.x",
-        "npm": "1.4.x"
+        "node": "0.12.x",
+        "npm": "2.11.x"
     },
     "scripts": {
         "start": "grunt",
